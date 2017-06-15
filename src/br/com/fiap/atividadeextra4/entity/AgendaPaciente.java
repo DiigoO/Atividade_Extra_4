@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +25,14 @@ public class AgendaPaciente implements Serializable{
 	
 	@Column(name = "PACIENTECPF")
 	private String paciente_cpf;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "IDAGENDA")
+	private Agenda agenda;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CPFPACIENTE")
+	private Paciente paciente;
 
 	public int getAgenda_id() {
 		return agenda_id;
@@ -31,12 +42,12 @@ public class AgendaPaciente implements Serializable{
 		this.agenda_id = agenda_id;
 	}
 
-	public String getPaciente_cpf() {
-		return paciente_cpf;
+	public Agenda getAgenda() {
+		return agenda;
 	}
 
-	public void setPaciente_cpf(String paciente_cpf) {
-		this.paciente_cpf = paciente_cpf;
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
 	}
 	
 	

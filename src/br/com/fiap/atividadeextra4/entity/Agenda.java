@@ -2,12 +2,17 @@ package br.com.fiap.atividadeextra4.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,7 +26,7 @@ public class Agenda implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IDCLIENTE")
+	@Column(name = "IDAGENDA")
 	private int id;
 	
 	@Column(name = "DATA")
@@ -32,6 +37,9 @@ public class Agenda implements Serializable{
 	
 	@Column(name = "DESCRICAO")
 	private String descricao;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "agenda")
+	private Set<AgendaPaciente> agendaPacientes = new HashSet<>();
 
 	public Date getData() {
 		return data;
@@ -55,6 +63,14 @@ public class Agenda implements Serializable{
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Set<AgendaPaciente> getAgendaPacientes() {
+		return agendaPacientes;
+	}
+
+	public void setAgendaPacientes(Set<AgendaPaciente> agendaPacientes) {
+		this.agendaPacientes = agendaPacientes;
 	}
 	
 	

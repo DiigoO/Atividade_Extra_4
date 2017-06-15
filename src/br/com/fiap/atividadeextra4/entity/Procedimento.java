@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,8 +31,9 @@ public class Procedimento implements Serializable{
 	@Column(name = "PRECO")
 	private double preco;
 	
-	@Column(name = "CPFPAC")
-	private String cpfpac;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CPFPACIENTE")
+	private Paciente paciente;	
 
 	public String getDescricao() {
 		return descricao;
@@ -47,18 +51,11 @@ public class Procedimento implements Serializable{
 		this.preco = preco;
 	}
 
-	public String getCpfpac() {
-		return cpfpac;
+	public Paciente getPaciente() {
+		return paciente;
 	}
 
-	public void setCpfpac(String cpfpac) {
-		this.cpfpac = cpfpac;
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
-
 }

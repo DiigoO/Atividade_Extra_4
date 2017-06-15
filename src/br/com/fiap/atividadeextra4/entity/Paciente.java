@@ -2,10 +2,15 @@ package br.com.fiap.atividadeextra4.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +34,15 @@ public class Paciente implements Serializable{
 	
 	@Column(name = "TELEFONE")
 	private String telefone;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "paciente")
+	private Set<AgendaPaciente> agendaPacientes = new HashSet<>();
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "paciente")
+	private Set<MatMed> matMeds = new HashSet<>();
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "paciente")
+	private Set<Procedimento> procedimentos = new HashSet<>();
 
 	public String getCpf() {
 		return cpf;
@@ -60,6 +74,30 @@ public class Paciente implements Serializable{
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public Set<AgendaPaciente> getAgendaPacientes() {
+		return agendaPacientes;
+	}
+
+	public void setAgendaPacientes(Set<AgendaPaciente> agendaPacientes) {
+		this.agendaPacientes = agendaPacientes;
+	}
+
+	public Set<MatMed> getMatMeds() {
+		return matMeds;
+	}
+
+	public void setMatMeds(Set<MatMed> matMeds) {
+		this.matMeds = matMeds;
+	}
+
+	public Set<Procedimento> getProcedimentos() {
+		return procedimentos;
+	}
+
+	public void setProcedimentos(Set<Procedimento> procedimentos) {
+		this.procedimentos = procedimentos;
 	}
 	
 	
