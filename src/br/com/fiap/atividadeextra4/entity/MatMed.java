@@ -71,6 +71,12 @@ public class MatMed implements Serializable{
 		this.paciente = paciente;
 	}
 
+	@Override
+	public String toString() {
+		return "MatMed [id=" + id + ", descricao=" + descricao + ", preco=" + preco + ", fabricante=" + fabricante
+				+ ", paciente=" + paciente + "]";
+	}
+
 	
 	
 }

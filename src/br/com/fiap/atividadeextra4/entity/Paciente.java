@@ -99,6 +99,14 @@ public class Paciente implements Serializable{
 	public void setProcedimentos(Set<Procedimento> procedimentos) {
 		this.procedimentos = procedimentos;
 	}
+
+	@Override
+	public String toString() {
+		return "Paciente [cpf=" + cpf + ", nome=" + nome + ", datanasc=" + datanasc + ", telefone=" + telefone
+				+ ", agendaPacientes=" + agendaPacientes + ", getMatMeds()=" + getMatMeds() + ", getProcedimentos()="
+				+ getProcedimentos() + "]";
+	}
+	
 	
 	
 }

@@ -58,4 +58,12 @@ public class Procedimento implements Serializable{
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
+
+	@Override
+	public String toString() {
+		return "Procedimento [id=" + id + ", descricao=" + descricao + ", preco=" + preco + ", paciente=" + paciente
+				+ "]";
+	}
+	
+	
 }
